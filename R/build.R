@@ -1,11 +1,13 @@
 
 #' @title Build a Dockerfile
 #'
-#' @description  Build a Dockerfile to extract packages later
+#' @description  Build a Dockerfile. This dockerfile install base R, cran packages and github packages. System requirements must be edited by hand after.
 #'
 #' @param cran_packages A character Vector with all cran packages to install
 #' @param gitsomething_packages_df A df with information about remotes
 #' @param path Folder to where the file must be written
+#'
+#' @return Nothing. Builds a text file named Dockerfile in the folder that you specify in path
 
 
 build_dockerfile <- function(cran_packages = NULL,
@@ -59,9 +61,13 @@ build_dockerfile <- function(cran_packages = NULL,
 
 #' @title Build bootstrap
 #'
-#' @description  Build boostratp
+#' @description  Build boostrap file to be used by AWS Lambda. The file it is a shell script that
+#' make a request to Lambda API to retrieve the event data, pass that to the .R function and post a response
 #'
 #' @param path Folder to where the file must be written
+#'
+#' @return Nothing. Builds a text file named bootstrap in the folder that you specify in path
+
 
 
 build_bootstrap <- function(path){
@@ -92,10 +98,14 @@ done'
 
 #' @title Build zipfunction.sh
 #'
-#' @description  Build zip function that compress all packages and libs that you need to pass to lambda
+#' @description  Build the zip function. This is a shell script that make a copy of all R binaries,
+#' R execs, the .R lambda function and all R libraries that is necessery to RUN the lambda function informed. ALL the
+#' SHARED LIBS must be specified by hand later.
+#'
 #' @param path Folder to where the file mus be written
 #' @param lambda_name Name of the lambda funcion
 #' @param pkg_names A character vector of the packages that you need to pass do lambda
+#' @return Nothing. Builds a text file named zipfunction in the folder that you specify in path
 
 build_zipfunciton <- function(path, lambda_name,pkg_names){
 
@@ -145,16 +155,15 @@ zip -r /opt/work/function.zip .")
   }else{
     write(zipfunction, file = paste0(path, "/","zip_function.sh"))
   }
-
-
 }
 
 #' @title Build the Build file
 #'
-#' @description Build the Build File. The build file uses docker to build a image from Dockerfile spin up a container to get the packages to zip function
+#' @description Build the Build File. The build file is a shell script that
+#' uses docker to build a a container based on Dockerfile created early. Spin up a container, mount the necessary folders to get the packages to zip function
 #' @param path Folder to where the file must be written
 #' @param lambda_name Name of lambda function
-
+#' @return Nothing. Builds a text file named build in the folder that you specify in path
 
 build_build <- function(path,lambda_name){
   build <- paste0(
@@ -176,10 +185,21 @@ build_build <- function(path,lambda_name){
 
 #' @title Write all necessary files to build the zip archive to lambda
 #'
-#' @description Build bootstrap, dockerfile, build, zip functiona and put lambda file in folder
-#' @param path Folder of project
+#' @description This function is a wrapper of individuals functions written in this package.
+#' Build bootstrap, dockerfile, build, zipfunction files and put .R lambda file in the folder specified.
+#' @param path Folder of project that will receive all files
 #' @param lambda Path to .R file of lambda
+#'
+#' @details This functions only build files that can't build the necessary zip file to submit to AWS lambda.
+#' \itemize{
+#'    \item{"bootstrap"}{The file it is a shell script that make a request to Lambda API to retrieve the event data, pass that to the .R function and post a response. This script it will be executed at beginning of a Lambda call}
+#'    \item{"dockerfile}{This dockerfile uses a image from lambci and install base R, cran packages and github packages. System requirements must be edited by hand after.}
+#'    \item{"zipfunction"}{This file it is a shell script that is responsible to get all R binaries and libs that is necessary to RUN the specified lambda function. ALL SHARED LIBS must be edited by hand after.}
+#'    \item{"build"}{This is a shell script that is responsible to build and spin up a container based on the dockerfile early created. Mount necessary folders and executy zip function to package all}
+#' }
 #' @export
+
+
 build_files <- function(path, lambda){
   if(!dir.exists(path)){
     dir.create(path)

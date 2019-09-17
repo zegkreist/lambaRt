@@ -1,12 +1,8 @@
 
 
-
-
-
-
 #' @title Get used packages in a R function
 #'
-#' @description Retrive used packages in a R function
+#' @description Retrieve used packages in a R function. Searches for library, require, loadNamespace mad "::"
 #'
 #' @param path Path to .R file
 #'
@@ -52,7 +48,7 @@ pkg_names_finder <- function(path){
 
 #' @title Search for packages inside a folder
 #'
-#' @description  Search for packages, by name, inside a folder
+#' @description  Given a vector of names, search for folders that matchs. Used to find path of packages
 #'
 #' @param path Path to folder to search to
 #' @param pkg_names Name of packages to search
