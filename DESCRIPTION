@@ -1,15 +1,15 @@
 Package: lambaRt
 Title: Build files to create AWS lambdas
 Version: 0.1
-Authors@R: 
+Authors@R: c(
     person(given = "Navarro",
            family = "Rosa",
            role = c("aut", "cre"),
-           email = "navarro.msrosa@gmail.com")
+           email = "navarro.msrosa@gmail.com"),
     person(given = "Lucas",
            family = "Cabral",
-           role = c("aut", "cre"),
-           email = "lucastscabral@gmail.com")
+           role = c("aut"),
+           email = "lucastscabral@gmail.com"))
 Description: Help build files to construct a AWS lambda funciton.
 Depends: stringi
 Imports: stringi
