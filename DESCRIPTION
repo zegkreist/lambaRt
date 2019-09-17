@@ -1,6 +1,6 @@
 Package: lambaRt
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Build files to create AWS lambdas
+Version: 0.1
 Authors@R: 
     person(given = "Navarro",
            family = "Rosa",

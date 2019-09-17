@@ -9,6 +9,10 @@ build_bootstrap(path)
 \arguments{
 \item{path}{Folder to where the file must be written}
 }
+\value{
+Nothing. Builds a text file named bootstrap in the folder that you specify in path
+}
 \description{
-Build boostratp
+Build boostrap file to be used by AWS Lambda. The file it is a shell script that
+make a request to Lambda API to retrieve the event data, pass that to the .R function and post a response
 }

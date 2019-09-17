@@ -11,6 +11,10 @@ build_build(path, lambda_name)
 
 \item{lambda_name}{Name of lambda function}
 }
+\value{
+Nothing. Builds a text file named build in the folder that you specify in path
+}
 \description{
-Build the Build File. The build file uses docker to build a image from Dockerfile spin up a container to get the packages to zip function
+Build the Build File. The build file is a shell script that
+uses docker to build a a container based on Dockerfile created early. Spin up a container, mount the necessary folders to get the packages to zip function
 }

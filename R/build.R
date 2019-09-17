@@ -68,8 +68,6 @@ build_dockerfile <- function(cran_packages = NULL,
 #'
 #' @return Nothing. Builds a text file named bootstrap in the folder that you specify in path
 
-
-
 build_bootstrap <- function(path){
   bootstrap <- '#!/bin/sh
 
@@ -192,10 +190,10 @@ build_build <- function(path,lambda_name){
 #'
 #' @details This functions only build files that can't build the necessary zip file to submit to AWS lambda.
 #' \itemize{
-#'    \item{"bootstrap"}{The file it is a shell script that make a request to Lambda API to retrieve the event data, pass that to the .R function and post a response. This script it will be executed at beginning of a Lambda call}
-#'    \item{"dockerfile}{This dockerfile uses a image from lambci and install base R, cran packages and github packages. System requirements must be edited by hand after.}
-#'    \item{"zipfunction"}{This file it is a shell script that is responsible to get all R binaries and libs that is necessary to RUN the specified lambda function. ALL SHARED LIBS must be edited by hand after.}
-#'    \item{"build"}{This is a shell script that is responsible to build and spin up a container based on the dockerfile early created. Mount necessary folders and executy zip function to package all}
+#'    \item{"bootstrap"}{ The file it is a shell script that make a request to Lambda API to retrieve the event data, pass that to the .R function and post a response. This script it will be executed at beginning of a Lambda call}
+#'    \item{"dockerfile"}{ This dockerfile uses a image from lambci and install base R, cran packages and github packages. System requirements must be edited by hand after.}
+#'    \item{"zipfunction"}{ This file it is a shell script that is responsible to get all R binaries and libs that is necessary to RUN the specified lambda function. ALL SHARED LIBS must be edited by hand after.}
+#'    \item{"build"}{ This is a shell script that is responsible to build and spin up a container based on the dockerfile early created. Mount necessary folders and executy zip function to package all}
 #' }
 #' @export
 

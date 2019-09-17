@@ -12,5 +12,5 @@ lib_path_machine(path, pkg_names)
 \item{pkg_names}{Name of packages to search}
 }
 \description{
-Search for packages, by name, inside a folder
+Given a vector of names, search for folders that matchs. Used to find path of packages
 }

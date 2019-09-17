@@ -10,5 +10,5 @@ pkg_names_finder(path)
 \item{path}{Path to .R file}
 }
 \description{
-Retrive used packages in a R function
+Retrieve used packages in a R function. Searches for library, require, loadNamespace mad "::"
 }

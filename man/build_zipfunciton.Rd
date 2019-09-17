@@ -13,6 +13,11 @@ build_zipfunciton(path, lambda_name, pkg_names)
 
 \item{pkg_names}{A character vector of the packages that you need to pass do lambda}
 }
+\value{
+Nothing. Builds a text file named zipfunction in the folder that you specify in path
+}
 \description{
-Build zip function that compress all packages and libs that you need to pass to lambda
+Build the zip function. This is a shell script that make a copy of all R binaries,
+R execs, the .R lambda function and all R libraries that is necessery to RUN the lambda function informed. ALL the
+SHARED LIBS must be specified by hand later.
 }

@@ -14,6 +14,9 @@ build_dockerfile(cran_packages = NULL, gitsomething_packages_df = NULL,
 
 \item{path}{Folder to where the file must be written}
 }
+\value{
+Nothing. Builds a text file named Dockerfile in the folder that you specify in path
+}
 \description{
-Build a Dockerfile to extract packages later
+Build a Dockerfile. This dockerfile install base R, cran packages and github packages. System requirements must be edited by hand after.
 }
