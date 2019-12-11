@@ -154,7 +154,7 @@ rm -f /opt/work/function.zip
 zip -r /opt/work/function.zip .")
 
   if(substr(path, nchar(path), nchar(path)) == "/"){
-    write(zipfunction, file = paste0(path, "zip_funcion.sh"))
+    write(zipfunction, file = paste0(path, "zip_function.sh"))
   }else{
     write(zipfunction, file = paste0(path, "/","zip_function.sh"))
   }
