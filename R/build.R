@@ -47,8 +47,12 @@ build_dockerfile <- function(cran_packages = NULL,
                         && R -e \"devtools::install_github(c('",
                              paste0(paste0(gitsomething_packages_df$remote_username,"/", gitsomething_packages_df$remote_repo,"@" ,gitsomething_packages_df$remote_ref), collapse = "','"),
                              "), upgrade = \"always\"')\"")
+        }
+
     }
 
+    dockerfile <- paste0(dockerfile, " \\
+                      && yum clean all ")
 
     if(substr(path, nchar(path), nchar(path)) == "/"){
       write(dockerfile, file = paste0(path, "Dockerfile"))
