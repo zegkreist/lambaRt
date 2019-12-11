@@ -37,8 +37,9 @@ build_dockerfile <- function(cran_packages = NULL,
                            "'), repos='http://cran.rstudio.com/')\"")
     }
 
-    if(!is.null(gitsomething_packages_df) & nrow(gitsomething_packages_df) > 0 ){
-      dockerfile <- paste0(dockerfile, " \\
+    if (!is.null(gitsomething_packages_df)){
+    	if (nrow(gitsomething_packages_df) > 0){
+              dockerfile <- paste0(dockerfile, " \\
                       && R -e \"install.packages(c('devtools'), repos='http://cran.rstudio.com/')\"")
 
 
